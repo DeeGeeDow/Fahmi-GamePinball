@@ -7,7 +7,10 @@ public class BumperController : MonoBehaviour
     // menyimpan variabel bola sebagai referensi untuk pengecekan
     public Collider ballCollider;
     public float multiplier;
+    public float score = 15;
 
+    public VFXManager VFXManager;
+    public ScoreManager scoreManager;
     private void OnCollisionEnter(Collision collision)
     {
         // memastikan yang menabrak adalah bola
@@ -17,6 +20,8 @@ public class BumperController : MonoBehaviour
             rbBall.velocity *= multiplier;
             // kita lakukan debug
             Debug.Log("Kena Bola");
+            VFXManager.PlayVFX(collision.transform.position);
+            scoreManager.AddScore(score);
         }
     }
 }
